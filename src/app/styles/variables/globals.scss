@@ -1,5 +1,7 @@
+@use '../fonts/SFPro.scss';
+
 :root {
-  --font-family-main: Arial, sans-serif;
+  --font-family-main: 'SFPro', Arial, sans-serif;
 
   --font-size-xs: 10px;
   --font-line-xs: 1.08;
