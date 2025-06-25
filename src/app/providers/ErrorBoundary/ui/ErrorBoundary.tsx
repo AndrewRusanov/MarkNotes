@@ -1,3 +1,4 @@
+import { Loader } from '@/widgets'
 import { Component, ErrorInfo, ReactNode, Suspense } from 'react'
 
 interface State {
@@ -35,7 +36,7 @@ class ErrorBoundary extends Component<Props, State> {
 
     return (
       //TODO: добавить Loader
-      <Suspense fallback={<div>Загрузка...</div>}>
+      <Suspense fallback={<Loader text='Загрузка...' />}>
         {this.props.children}
       </Suspense>
     )
