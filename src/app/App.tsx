@@ -1,5 +1,14 @@
 import '@/app/styles/index.scss'
+import { useTheme } from '@app/providers'
+import classNames from 'classnames'
 
 export function App() {
-  return <div className=''></div>
+  const { theme } = useTheme()
+
+  console.log('####:', theme)
+  return (
+    <div className={classNames('app', theme)}>
+      <h1>Привет, мир!</h1>
+    </div>
+  )
 }
