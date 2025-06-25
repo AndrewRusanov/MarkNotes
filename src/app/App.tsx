@@ -1,4 +1,5 @@
 import '@/app/styles/index.scss'
+import { NotFound } from '@/pages'
 import { NotesLayout } from '@app/layout'
 import { useTheme } from '@app/providers'
 import classNames from 'classnames'
@@ -14,6 +15,7 @@ export function App() {
         <Route element={<NotesLayout />}>
           <Route path='/notes' element={<div>Основная страница</div>} />
         </Route>
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </div>
   )
