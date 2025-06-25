@@ -9,4 +9,6 @@
   background-color: var(--primary-bg);
   color: var(--text-primary);
   font: var(--font-m);
+  display: flex;
+  flex-direction: column;
 }
