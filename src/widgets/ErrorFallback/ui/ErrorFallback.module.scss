@@ -1,0 +1,40 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  .container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    svg {
+      width: 48px;
+      height: 48px;
+      fill: var(--text-secondary);
+    }
+
+    .message {
+      font: var(--font-m);
+      color: var(--text-primary);
+      margin: 0;
+    }
+  }
+
+  .action {
+    padding: 4px 8px;
+    background-color: var(--orange);
+    color: var(--text-primary);
+    font: var(--font-m);
+    margin: 0;
+    border: none;
+    border-radius: 5px;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.85;
+    }
+  }
+}

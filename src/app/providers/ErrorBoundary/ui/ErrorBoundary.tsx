@@ -1,4 +1,4 @@
-import { Loader } from '@/widgets'
+import { ErrorFallback, Loader } from '@/widgets'
 import { Component, ErrorInfo, ReactNode, Suspense } from 'react'
 
 interface State {
@@ -27,9 +27,7 @@ class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       return (
         <Suspense>
-          {/* TODO: сделать страницу ошибки */}
-          <div>Ошибка</div>
-          {/*<ErrorPage />*/}
+          <ErrorFallback />
         </Suspense>
       )
     }

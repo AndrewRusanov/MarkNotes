@@ -1,3 +1,4 @@
+import { ErrorIcon } from './ErrorIcon'
 import { LoaderIcon } from './LoaderIcon'
 
-export { LoaderIcon }
+export { ErrorIcon, LoaderIcon }
