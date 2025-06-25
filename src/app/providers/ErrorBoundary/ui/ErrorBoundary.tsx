@@ -33,7 +33,6 @@ class ErrorBoundary extends Component<Props, State> {
     }
 
     return (
-      //TODO: добавить Loader
       <Suspense fallback={<Loader text='Загрузка...' />}>
         {this.props.children}
       </Suspense>
