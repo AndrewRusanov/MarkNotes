@@ -4,7 +4,7 @@
   justify-content: center;
   padding: 4px;
   border-radius: 50%;
-  background-color: var(--secondary-bg);
+  background-color: var(--orange);
   border: none;
   outline: none;
 
@@ -16,9 +16,5 @@
 
   &:hover {
     cursor: pointer;
-
-    svg {
-      fill: var(--orange);
-    }
   }
 }
