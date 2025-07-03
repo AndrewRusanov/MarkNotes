@@ -1,3 +1,4 @@
+import { useAuth } from '@/app/providers'
 import { SignIn, SignUp } from '@/features'
 import { SignInFormData } from '@/features/SignIn/model/model'
 import { SignUpFormData } from '@/features/SignUp/model/model'
@@ -7,18 +8,17 @@ import styles from './LoginPage.module.scss'
 
 const LoginPage: FC = () => {
   const [mode, setMode] = useState<'signIn' | 'signUp'>('signIn')
-  //const auth = useAuth()
+  const auth = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
 
   const from = location.state?.from || '/'
 
   const handleSignUpSubmit = (formData: SignUpFormData) => {
-    //auth?.signUp(formData, () => {
-    //  setMode('signIn')
-    //  alert('Регистрация прошла успешно!')
-    //})
-    navigate('/notes')
+    auth?.signUp(formData, () => {
+      setMode('signIn')
+      alert('Регистрация прошла успешно!')
+    })
   }
 
   const handleSignInSubmit = (formData: SignInFormData) => {
@@ -35,12 +35,10 @@ const LoginPage: FC = () => {
       return
     }
 
-    navigate('/notes')
-
-    //auth?.signIn(user, () => {
-    //  navigate(from)
-    //  alert(`Добро пожаловать, ${user.name}!`)
-    //})
+    auth?.signIn(user, () => {
+      navigate(from)
+      alert(`Добро пожаловать, ${user.name}!`)
+    })
   }
 
   const handleToggleMode = () => {
