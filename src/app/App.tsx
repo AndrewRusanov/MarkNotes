@@ -1,6 +1,6 @@
 import '@/app/styles/index.scss'
 import { NotesLayout } from '@app/layout'
-import { useTheme } from '@app/providers'
+import { PrivateRoute, useTheme } from '@app/providers'
 import classNames from 'classnames'
 import { lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
@@ -24,7 +24,14 @@ export function App() {
       <Routes>
         <Route path='/login' element={<Login />} />
         <Route element={<NotesLayout />}>
-          <Route path='/notes' element={<div>Основная страница</div>} />
+          <Route
+            path='/notes'
+            element={
+              <PrivateRoute>
+                <div>Основная страница</div>
+              </PrivateRoute>
+            }
+          />
         </Route>
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

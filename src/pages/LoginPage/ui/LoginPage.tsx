@@ -37,7 +37,7 @@ const LoginPage: FC = () => {
 
     auth?.signIn(user, () => {
       navigate(from)
-      alert(`Добро пожаловать, ${user.name}!`)
+      alert(`Добро пожаловать, ${user.email}!`)
     })
   }
 
