@@ -1,13 +1,18 @@
 import { MOCK_NOTES } from '@/entities/Note/model/mockNotes'
-import { Notes } from '@/features'
-import { FC } from 'react'
+import { Notes, SearchBox } from '@/features'
+import { FC, useState } from 'react'
 import styles from './Sidebar.module.scss'
 
 const Sidebar: FC = () => {
+  const [searchQuery, setSearchQuery] = useState('')
+
+  const filteredNotes = MOCK_NOTES.filter(note =>
+    note.title.toLowerCase().includes(searchQuery.toLowerCase())
+  )
   return (
     <aside className={styles.sidebar}>
-      {/* TODO: сделать SearchBox */}
-      <Notes notes={MOCK_NOTES} />
+      <SearchBox onSearchChange={setSearchQuery} />
+      <Notes notes={filteredNotes} />
     </aside>
   )
 }
