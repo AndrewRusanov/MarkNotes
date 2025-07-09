@@ -1,14 +1,16 @@
 import { ErrorBoundary } from '@/app/providers'
-import { Navbar } from '@/widgets'
+import { Navbar, Sidebar } from '@/widgets'
 import { FC } from 'react'
 import { Outlet } from 'react-router-dom'
+import styles from './NotesLayout.module.scss'
 
 const NotesLayout: FC = () => {
   return (
     <>
       {/* TODO: Сделать Sidebar */}
       <Navbar />
-      <main>
+      <main className={styles.main}>
+        <Sidebar />
         <ErrorBoundary>
           <Outlet />
         </ErrorBoundary>

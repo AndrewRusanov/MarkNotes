@@ -32,6 +32,14 @@ export function App() {
               </PrivateRoute>
             }
           />
+          <Route
+            path='/notes/:id'
+            element={
+              <PrivateRoute>
+                <div>Заметка</div>
+              </PrivateRoute>
+            }
+          />
         </Route>
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
