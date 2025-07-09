@@ -10,7 +10,7 @@ const Notes: FC<Props> = ({ notes }) => {
   return (
     <div>
       {notes.map(note => (
-        <Note note={note} />
+        <Note key={note.id} note={note} />
       ))}
     </div>
   )
