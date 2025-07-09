@@ -15,6 +15,11 @@ const NotFoundPage = lazy(() =>
     default: module.NotFound,
   }))
 )
+const MainPage = lazy(() =>
+  import('@/pages').then(module => ({
+    default: module.MainPage,
+  }))
+)
 
 export function App() {
   const { theme } = useTheme()
@@ -28,7 +33,7 @@ export function App() {
             path='/notes'
             element={
               <PrivateRoute>
-                <div>Основная страница</div>
+                <MainPage />
               </PrivateRoute>
             }
           />
