@@ -6,28 +6,28 @@ export const MOCK_NOTES: NoteModel[] = [
   {
     id: uuid(),
     title: 'Новая заметка',
-    createAt: dayjs().format('DD-MM-YYYY'),
+    createAt: dayjs(),
     note: 'Семья текст',
     group: 'Семья',
   },
   {
     id: uuid(),
     title: 'Новая заметка 1',
-    createAt: dayjs().format('DD-MM-YYYY'),
+    createAt: dayjs(),
     note: 'Работа текст',
     group: 'Работа',
   },
   {
     id: uuid(),
     title: 'Новая заметка 22222222222222222222',
-    createAt: dayjs().format('DD-MM-YYYY'),
+    createAt: dayjs(),
     note: 'Работа текст',
     group: 'Работа',
   },
   {
     id: uuid(),
     title: 'Новая заметка 2',
-    createAt: dayjs().format('DD-MM-YYYY'),
+    createAt: dayjs(),
     note: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam elementum non nibh vitae hendrerit. Etiam varius lacinia lorem blandit ultricies. In suscipit lectus in augue volutpat posuere. Vestibulum eu rutrum ante. Morbi rutrum est pulvinar felis pulvinar, sed rutrum leo pellentesque. Suspendisse tempus mauris vel erat sodales, in vestibulum nulla eleifend. Morbi ornare libero non tristique maximus. Vivamus aliquet nisl sed eros interdum, nec feugiat ligula porttitor. Nulla lacinia ac mauris ut varius.
 
 Donec eu auctor arcu, in rutrum metus. Morbi finibus ex id nibh dapibus vestibulum. Vestibulum viverra massa tincidunt erat porttitor, sit amet tempor lectus ultricies. Donec ut purus a felis ultricies rhoncus. Praesent cursus mattis dictum. Nullam cursus tempor leo, eu aliquet dui pulvinar non. Integer gravida odio diam, sed consequat lacus commodo vitae. Praesent quis molestie lectus. Fusce tortor erat, imperdiet vel luctus sed, placerat sed nisi. Donec posuere enim ligula, vitae ornare lacus gravida aliquet. Sed at lobortis massa. Aenean molestie tortor sit amet facilisis maximus. Curabitur scelerisque in metus eget aliquet. In dignissim dictum eros.

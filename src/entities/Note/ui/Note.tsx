@@ -1,3 +1,4 @@
+import { getFormattedDate } from '@/shared'
 import { FC } from 'react'
 import { NavLink } from 'react-router-dom'
 import { NoteModel } from '../model/types'
@@ -12,7 +13,9 @@ const Note: FC<Props> = ({ note }) => {
     <NavLink to={`/notes/${note.id}`} className={styles.note}>
       <h4 className={styles.title}>{note.title}</h4>
       <div className={styles.additionaInfo}>
-        <span className={styles.createdAt}>{note.createAt}</span>
+        <span className={styles.createdAt}>
+          {getFormattedDate(note.createAt)}
+        </span>
         <div className={styles.group}>
           <div
             className={`${styles.groupCircle} ${
