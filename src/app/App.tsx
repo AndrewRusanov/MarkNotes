@@ -20,6 +20,9 @@ const MainPage = lazy(() =>
     default: module.MainPage,
   }))
 )
+const NotePage = lazy(() =>
+  import('@/pages').then(module => ({ default: module.NotePage }))
+)
 
 export function App() {
   const { theme } = useTheme()
@@ -41,7 +44,7 @@ export function App() {
             path='/notes/:id'
             element={
               <PrivateRoute>
-                <div>Заметка</div>
+                <NotePage />
               </PrivateRoute>
             }
           />
