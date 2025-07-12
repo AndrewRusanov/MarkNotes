@@ -20,7 +20,11 @@ const Sidebar: FC = () => {
     <aside className={styles.sidebar}>
       <SearchBox onSearchChange={setSearchQuery} />
       <Notes notes={filteredNotes} />
-      <button type='button' onClick={handleAddNote}>
+      <button
+        type='button'
+        className={styles.createBtn}
+        onClick={handleAddNote}
+      >
         +
       </button>
     </aside>
