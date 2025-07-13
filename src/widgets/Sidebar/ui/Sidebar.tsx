@@ -1,19 +1,35 @@
-import { EMPTY_NOTE, MOCK_NOTES } from '@/entities/Note/model/mockNotes'
+import { noteRepository } from '@/entities/Note/model/noteRepo'
 import { NoteModel } from '@/entities/Note/model/types'
 import { Notes, SearchBox } from '@/features'
-import { FC, useState } from 'react'
+import dayjs from 'dayjs'
+import { FC, useEffect, useState } from 'react'
+import { v4 as uuid } from 'uuid'
 import styles from './Sidebar.module.scss'
 
 const Sidebar: FC = () => {
   const [searchQuery, setSearchQuery] = useState('')
-  const [notes, setNotes] = useState<NoteModel[]>(MOCK_NOTES)
+  const [notes, setNotes] = useState<NoteModel[]>([])
+
+  // Загружаем все заметки при монтировании
+  useEffect(() => {
+    noteRepository.getAll().then(setNotes)
+  }, [])
 
   const filteredNotes = notes.filter(note =>
     note.title.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
-  const handleAddNote = () => {
-    setNotes(prev => [EMPTY_NOTE, ...prev])
+  const handleAddNote = async () => {
+    const newNote: NoteModel = {
+      id: uuid(),
+      title: 'Новая заметка',
+      createAt: dayjs(),
+      note: '',
+      group: 'Личное',
+    }
+
+    await noteRepository.save(newNote)
+    setNotes(prev => [newNote, ...prev])
   }
 
   return (

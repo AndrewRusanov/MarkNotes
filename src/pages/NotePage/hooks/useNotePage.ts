@@ -1,26 +1,41 @@
-import { EMPTY_NOTE, MOCK_NOTES } from '@/entities/Note/model/mockNotes'
+import { EMPTY_NOTE } from '@/entities/Note/model/mockNotes'
+import { noteRepository } from '@/entities/Note/model/noteRepo'
 import { NoteModel } from '@/entities/Note/model/types'
+import { useDebouncedCallback } from '@mantine/hooks'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 export const useNotePage = () => {
   const { id } = useParams<{ id: string }>()
-  const [isEditMode, setIsEditMode] = useState(false)
   const [note, setNote] = useState<NoteModel>(EMPTY_NOTE)
+  const [isEditMode, setIsEditMode] = useState(false)
 
   useEffect(() => {
-    const foundNote = id ? MOCK_NOTES.find(note => note.id === id) : EMPTY_NOTE
-    setNote(foundNote || EMPTY_NOTE)
-    setIsEditMode(false)
+    if (!id) {
+      setNote(EMPTY_NOTE)
+      return
+    }
+
+    noteRepository.getById(id).then(loaded => {
+      setNote(loaded || EMPTY_NOTE)
+    })
   }, [id])
 
+  const debouncedSave = useDebouncedCallback((updated: NoteModel) => {
+    noteRepository.save(updated)
+  }, 1000)
+
+  const updateNote = (updated: NoteModel) => {
+    setNote(updated)
+    debouncedSave(updated)
+  }
+
   const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault()
-    setNote({ ...note, title: event.target.value })
+    updateNote({ ...note, title: event.target.value })
   }
 
   const handleContentChange = (value: string) => {
-    setNote({ ...note, note: value })
+    updateNote({ ...note, note: value })
   }
 
   const toggleEditMode = () => {
