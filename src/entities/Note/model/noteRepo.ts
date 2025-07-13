@@ -32,4 +32,13 @@ export const noteRepository = {
       throw error // Optionally rethrow or handle the error as needed
     }
   },
+
+  async delete(id: string): Promise<void> {
+    try {
+      await db.notes.delete(id)
+    } catch (error) {
+      console.error('Failed to delete note from IndexedDB:', error)
+      throw error
+    }
+  },
 }

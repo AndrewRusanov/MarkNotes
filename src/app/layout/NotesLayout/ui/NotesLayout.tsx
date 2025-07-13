@@ -7,7 +7,6 @@ import styles from './NotesLayout.module.scss'
 const NotesLayout: FC = () => {
   return (
     <>
-      {/* TODO: Сделать Sidebar */}
       <Navbar />
       <main className={styles.main}>
         <Sidebar />

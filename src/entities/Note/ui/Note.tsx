@@ -1,4 +1,4 @@
-import { getFormattedDate } from '@/shared'
+import { Delete, getFormattedDate } from '@/shared'
 import { FC } from 'react'
 import { NavLink } from 'react-router-dom'
 import { NoteModel } from '../model/types'
@@ -6,26 +6,37 @@ import styles from './Note.module.scss'
 
 interface Props {
   note: NoteModel
+  onDelete: (id: string) => void
 }
 
-const Note: FC<Props> = ({ note }) => {
+const Note: FC<Props> = ({ note, onDelete }) => {
   return (
-    <NavLink to={`/notes/${note.id}`} className={styles.note}>
-      <h4 className={styles.title}>{note.title}</h4>
-      <div className={styles.additionaInfo}>
-        <span className={styles.createdAt}>
-          {getFormattedDate(note.createAt)}
-        </span>
-        <div className={styles.group}>
-          <div
-            className={`${styles.groupCircle} ${
-              styles[`groupCircle--${note.group}`]
-            }`}
-          />
-          <span className={styles.groupName}>{note.group}</span>
+    <div className={styles.noteWrapper}>
+      <NavLink to={`/notes/${note.id}`} className={styles.note}>
+        <h4 className={styles.title}>{note.title}</h4>
+        <div className={styles.additionaInfo}>
+          <span className={styles.createdAt}>
+            {getFormattedDate(note.createAt)}
+          </span>
+          <div className={styles.group}>
+            <div
+              className={`${styles.groupCircle} ${
+                styles[`groupCircle--${note.group}`]
+              }`}
+            />
+            <span className={styles.groupName}>{note.group}</span>
+          </div>
         </div>
-      </div>
-    </NavLink>
+      </NavLink>
+      <button
+        type='button'
+        className={styles.deleteBtn}
+        onClick={() => onDelete(note.id)}
+        aria-label={`Удалить заметку ${note.title}`}
+      >
+        <Delete />
+      </button>
+    </div>
   )
 }
 

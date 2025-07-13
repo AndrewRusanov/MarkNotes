@@ -1,67 +1,100 @@
+.noteWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--gray);
+}
+
 .note {
   display: flex;
   width: 100%;
   flex-direction: column;
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--gray);
   text-decoration: none;
+  flex: 1;
+}
 
-  .title {
-    max-width: calc(100% - 24px);
+.title {
+  max-width: calc(100% - 24px);
+  font: var(--font-m);
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.additionaInfo {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+
+  .createdAt {
     font: var(--font-m);
     text-decoration: none;
-    font-weight: 500;
     color: var(--text-primary);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
-  .additionaInfo {
+  .group {
     display: flex;
-    flex-direction: row;
-    gap: 12px;
+    gap: 4px;
     align-items: center;
 
-    .createdAt {
+    .groupCircle {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--red);
+
+      &--Семья {
+        background-color: var(--green);
+      }
+      &--Работа {
+        background-color: var(--mint);
+      }
+      &--Дом {
+        background-color: var(--purple);
+      }
+      &--Личное {
+        background-color: var(--orange);
+      }
+      &--Путешествия {
+        background-color: var(--yellow);
+      }
+    }
+
+    .groupName {
       font: var(--font-m);
+      color: var(--text-secondary);
       text-decoration: none;
-      color: var(--text-primary);
     }
+  }
+}
 
-    .group {
-      display: flex;
-      gap: 4px;
-      align-items: center;
+.deleteBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px 8px;
+  border-radius: 4px;
 
-      .groupCircle {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background-color: var(--red);
+  svg {
+    width: 24px;
+    height: 24px;
+    path {
+      fill: var(--gray);
+    }
+  }
 
-        &--Семья {
-          background-color: var(--green);
-        }
-        &--Работа {
-          background-color: var(--mint);
-        }
-        &--Дом {
-          background-color: var(--purple);
-        }
-        &--Личное {
-          background-color: var(--orange);
-        }
-        &--Путешествия {
-          background-color: var(--yellow);
-        }
-      }
-
-      .groupName {
-        font: var(--font-m);
-        color: var(--text-secondary);
-        text-decoration: none;
+  &:hover {
+    svg {
+      path {
+        fill: var(--orange);
       }
     }
+    background-color: rgba(0, 0, 0, 0.1);
   }
 }

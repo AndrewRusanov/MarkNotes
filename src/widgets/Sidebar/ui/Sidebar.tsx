@@ -10,7 +10,6 @@ const Sidebar: FC = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [notes, setNotes] = useState<NoteModel[]>([])
 
-  // Загружаем все заметки при монтировании
   useEffect(() => {
     noteRepository.getAll().then(setNotes)
   }, [])
@@ -32,10 +31,15 @@ const Sidebar: FC = () => {
     setNotes(prev => [newNote, ...prev])
   }
 
+  const handleDeleteNote = async (id: string) => {
+    await noteRepository.delete(id)
+    setNotes(prev => prev.filter(note => note.id !== id))
+  }
+
   return (
     <aside className={styles.sidebar}>
       <SearchBox onSearchChange={setSearchQuery} />
-      <Notes notes={filteredNotes} />
+      <Notes notes={filteredNotes} onDeleteNote={handleDeleteNote} />
       <button
         type='button'
         className={styles.createBtn}
