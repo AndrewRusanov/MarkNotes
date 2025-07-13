@@ -1,6 +1,6 @@
 import MDEditor from '@uiw/react-md-editor'
 import { FC } from 'react'
-import styles from './MarkdownEditor.module.scss'
+import './Markdown.css'
 
 interface Props {
   value: string
@@ -13,15 +13,15 @@ const MarkdownEditor: FC<Props> = ({ value, onChange }) => {
   }
 
   return (
-    <div className={styles.wrapper}>
+    <div className='markdown-editor-container'>
       <MDEditor
         value={value}
         onChange={handleChange}
-        height={400}
+        height={200}
+        preview='edit'
         textareaProps={{
-          placeholder: 'Введите текст заметки...',
           spellCheck: true,
-          className: styles.text,
+          placeholder: 'Введите текст заметки...',
         }}
       />
     </div>

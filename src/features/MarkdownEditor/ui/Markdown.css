@@ -1,0 +1,35 @@
+.markdown-editor-container {
+  --md-editor-border: var(--orange);
+  --md-editor-text: var(--text-primary);
+  --md-editor-bg: transparent;
+}
+
+.markdown-editor-container .w-md-editor {
+  background: transparent;
+  font: var(--font-m);
+  min-height: 70vh;
+}
+
+.markdown-editor-container .w-md-editor-text {
+  padding: 12px;
+  color: var(--text-primary);
+}
+
+.markdown-editor-container .w-md-editor-text-input {
+  background: transparent;
+  color: var(--text-primary);
+  border-radius: 6px;
+}
+
+.markdown-editor-container .w-md-editor-text-input:focus {
+  outline: none;
+}
+
+.markdown-editor-container .w-md-editor-text-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.markdown-editor-container .w-md-editor-toolbar {
+  border-bottom: none;
+  background: var(--primary-bg);
+}
