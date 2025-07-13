@@ -4,14 +4,14 @@ import { FC } from 'react'
 
 interface Props {
   notes: NoteModel[]
-  onDeleteNote: (id: string) => void
+  onOpenDeleteModal: (id: string) => void
 }
 
-const Notes: FC<Props> = ({ notes, onDeleteNote }) => {
+const Notes: FC<Props> = ({ notes, onOpenDeleteModal }) => {
   return (
     <div>
       {notes.map(note => (
-        <Note key={note.id} note={note} onDelete={onDeleteNote} />
+        <Note key={note.id} note={note} onOpenDeleteModal={onOpenDeleteModal} />
       ))}
     </div>
   )

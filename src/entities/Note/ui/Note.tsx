@@ -6,10 +6,10 @@ import styles from './Note.module.scss'
 
 interface Props {
   note: NoteModel
-  onDelete: (id: string) => void
+  onOpenDeleteModal: (id: string) => void
 }
 
-const Note: FC<Props> = ({ note, onDelete }) => {
+const Note: FC<Props> = ({ note, onOpenDeleteModal }) => {
   return (
     <div className={styles.noteWrapper}>
       <NavLink to={`/notes/${note.id}`} className={styles.note}>
@@ -31,7 +31,7 @@ const Note: FC<Props> = ({ note, onDelete }) => {
       <button
         type='button'
         className={styles.deleteBtn}
-        onClick={() => onDelete(note.id)}
+        onClick={() => onOpenDeleteModal(note.id)}
         aria-label={`Удалить заметку ${note.title}`}
       >
         <Delete />
