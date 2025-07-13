@@ -1,0 +1,27 @@
+.sidebar {
+  min-height: calc(100vh - 48px);
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--gray);
+  max-width: 224px;
+  position: relative;
+
+  .createBtn {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--gray);
+    color: var(--orange);
+    font: var(--font-m);
+    font-weight: 700;
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    padding: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.themeSwitcher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 50%;
+  background-color: var(--orange);
+  border: none;
+  outline: none;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-primary);
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}

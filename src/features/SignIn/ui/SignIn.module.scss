@@ -1,0 +1,52 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  .title {
+    font: var(--font-xl);
+    color: var(--orange);
+    padding: 0;
+    margin: 0;
+  }
+
+  .input {
+    outline: none;
+    border: 1px solid var(--orange);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font: var(--font-m);
+    color: var(--text-primary);
+    background: transparent;
+    min-width: 250px;
+  }
+
+  .label {
+    font: var(--font-m);
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .submitButton {
+    background-color: transparent;
+    border: 1px solid var(--orange);
+    border-radius: 4px;
+    padding: 8px 16px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--orange);
+      color: var(--primary-bg);
+    }
+  }
+}
