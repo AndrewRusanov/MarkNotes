@@ -1,7 +1,7 @@
 import { MarkdownEditor, MarkdownViewer } from '@/features'
 import { ToggleEditMode } from '@/widgets'
 import { TextInput } from '@mantine/core'
-import { FC } from 'react'
+import { FC, useRef } from 'react'
 import { useNotePage } from '../hooks/useNotePage'
 import styles from './NotePage.module.scss'
 
@@ -14,15 +14,18 @@ const NotePage: FC = () => {
     toggleEditMode,
   } = useNotePage()
 
+  const titleInputRef = useRef<HTMLInputElement>(null)
+
   return (
     <div className={styles.notePage}>
       <div className={styles.header}>
         {isEditMode ? (
           <TextInput
+            ref={titleInputRef}
             placeholder='Название заметки'
             required
             value={note.title}
-            onChange={e => handleTitleChange(e.currentTarget.value)}
+            onChange={handleTitleChange}
             classNames={{
               input: styles.titleInput,
             }}

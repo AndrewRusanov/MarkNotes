@@ -1,6 +1,6 @@
 import { EMPTY_NOTE, MOCK_NOTES } from '@/entities/Note/model/mockNotes'
 import { NoteModel } from '@/entities/Note/model/types'
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 export const useNotePage = () => {
@@ -14,8 +14,9 @@ export const useNotePage = () => {
     setIsEditMode(false)
   }, [id])
 
-  const handleTitleChange = (value: string) => {
-    setNote({ ...note, title: value })
+  const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault()
+    setNote({ ...note, title: event.target.value })
   }
 
   const handleContentChange = (value: string) => {

@@ -13,7 +13,7 @@ const MarkdownEditor: FC<Props> = ({ value, onChange }) => {
       value={value}
       onChange={onChange}
       options={{
-        autofocus: true,
+        //autofocus: true,
         //TODO: добавить spellChecker
         spellChecker: false,
         placeholder: 'Введите текст заметки...',
