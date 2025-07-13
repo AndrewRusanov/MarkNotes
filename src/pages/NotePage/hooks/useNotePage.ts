@@ -21,8 +21,8 @@ export const useNotePage = () => {
     })
   }, [id])
 
-  const debouncedSave = useDebouncedCallback((updated: NoteModel) => {
-    noteRepository.save(updated)
+  const debouncedSave = useDebouncedCallback((updatedNote: NoteModel) => {
+    noteRepository.save(updatedNote)
   }, 1000)
 
   const updateNote = (updated: NoteModel) => {
@@ -31,11 +31,12 @@ export const useNotePage = () => {
   }
 
   const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    updateNote({ ...note, title: event.target.value })
+    const updatedNote = { ...note, title: event.target.value }
+    updateNote(updatedNote)
   }
 
-  const handleContentChange = (value: string) => {
-    updateNote({ ...note, note: value })
+  const handleContentChange = (value?: string) => {
+    updateNote({ ...note, note: value ?? '' })
   }
 
   const toggleEditMode = () => {

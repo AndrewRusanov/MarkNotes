@@ -1,25 +1,30 @@
-import 'easymde/dist/easymde.min.css'
+import MDEditor from '@uiw/react-md-editor'
 import { FC } from 'react'
-import SimpleMDE from 'react-simplemde-editor'
+import styles from './MarkdownEditor.module.scss'
 
 interface Props {
   value: string
-  onChange: (value: string) => void
+  onChange: (value?: string) => void
 }
 
 const MarkdownEditor: FC<Props> = ({ value, onChange }) => {
+  const handleChange = (val?: string) => {
+    onChange(val ?? '')
+  }
+
   return (
-    <SimpleMDE
-      value={value}
-      onChange={onChange}
-      options={{
-        //autofocus: true,
-        //TODO: добавить spellChecker
-        spellChecker: false,
-        placeholder: 'Введите текст заметки...',
-        status: false,
-      }}
-    />
+    <div className={styles.wrapper}>
+      <MDEditor
+        value={value}
+        onChange={handleChange}
+        height={400}
+        textareaProps={{
+          placeholder: 'Введите текст заметки...',
+          spellCheck: true,
+          className: styles.text,
+        }}
+      />
+    </div>
   )
 }
 

@@ -22,9 +22,14 @@ export const noteRepository = {
   },
 
   async save(note: NoteModel): Promise<void> {
-    await db.notes.put({
-      ...note,
-      createAt: note.createAt.toISOString(),
-    })
+    try {
+      await db.notes.put({
+        ...note,
+        createAt: note.createAt.toISOString(),
+      })
+    } catch (error) {
+      console.error('Failed to save note to IndexedDB:', error)
+      throw error // Optionally rethrow or handle the error as needed
+    }
   },
 }

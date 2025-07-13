@@ -1,0 +1,24 @@
+.wrapper {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+}
+
+.header {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+  padding: 8px 12px;
+}
+
+.text {
+  min-height: 300px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 15px;
+  padding: 12px;
+  line-height: 1.6;
+  background-color: #fff;
+  color: #333;
+  border-radius: 0 0 6px 6px;
+  border-top: none;
+}
