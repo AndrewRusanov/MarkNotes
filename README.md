@@ -1,69 +1,161 @@
-# React + TypeScript + Vite
+# MarkNotes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+MarkNotes — это веб-приложение для создания, редактирования и управления заметками с поддержкой Markdown. Оно построено на основе React с использованием TypeScript, Feature-Sliced Design (FSD) и включает авторизацию, темную/светлую тему, а также локальное хранилище заметок с помощью IndexedDB.
 
-Currently, two official plugins are available:
+## Основные возможности
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Создание, просмотр, редактирование и удаление заметок с использованием Markdown-редактора (`@uiw/react-md-editor`).
+- Поиск заметок по заголовку.
+- Группировка заметок по категориям (Личное, Семья, Работа, Дом, Путешествия) с цветовой индикацией.
+- Подтверждение удаления заметок через модальное окно (React Portal).
+- Аутентификация пользователей (регистрация и вход) с сохранением данных в `localStorage`.
+- Поддержка светлой и темной темы с сохранением выбора в `localStorage`.
+- Защищенные маршруты для авторизованных пользователей.
+- Обработка ошибок через `ErrorBoundary`.
+- Адаптивный интерфейс с использованием Mantine UI.
 
-## Expanding the ESLint configuration
+## Технологический стек
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend**: React 19, TypeScript, React Router 7, Mantine UI
+- **Стилизация**: SCSS (модули), CSS-переменные
+- **Хранилище**: IndexedDB (Dexie.js)
+- **Markdown**: @uiw/react-md-editor
+- **Библиотеки**: Day.js, UUID, Classnames
+- **Сборка**: Vite
+- **Линтер**: ESLint
+- **Архитектура**: Feature-Sliced Design (FSD)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Установка и запуск
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Требования
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js (версия 18 или выше)
+- npm (версия 8 или выше)
+
+### Установка
+
+1. Склонируйте репозиторий:
+
+   ```bash
+   git clone <repository-url>
+   cd marknotes
+   ```
+
+2. Установите зависимости:
+   ```bash
+   npm install
+   ```
+
+### Скрипты
+
+- Запуск в режиме разработки:
+
+  ```bash
+  npm run dev
+  ```
+
+  Приложение будет доступно по адресу `http://localhost:5173`.
+
+- Сборка для продакшена:
+
+  ```bash
+  npm run build
+  ```
+
+- Предпросмотр собранного приложения:
+
+  ```bash
+  npm run preview
+  ```
+
+- Проверка кода с помощью ESLint:
+  ```bash
+  npm run lint
+  ```
+
+## Структура проекта
+
+Проект организован по методологии **Feature-Sliced Design (FSD)**:
+
+```
+src/
+├── app/                    # Точка входа и глобальные провайдеры
+│   ├── providers/          # Контексты (Auth, Theme)
+│   ├── App.tsx             # Главный компонент приложения
+│   └── styles/             # Глобальные стили
+├── entities/               # Бизнес-сущности
+│   └── Note/               # Сущность заметок
+│       ├── model/          # Логика работы с заметками (репозиторий, типы)
+│       └── ui/             # UI-компоненты заметок (Note)
+├── features/               # Функциональные возможности
+│   ├── SignIn/             # Функционал входа
+│   ├── SignUp/             # Функционал регистрации
+│   ├── Notes/              # Список заметок
+│   └── SearchBox/          # Поиск заметок
+├── pages/                  # Страницы приложения
+│   ├── LoginPage.tsx       # Страница входа
+│   ├── MainPage.tsx        # Главная страница (список заметок)
+│   ├── NotePage.tsx        # Страница одной заметки
+│   └── NotFound.tsx        # Страница 404
+├── shared/                 # Общие утилиты и UI-компоненты
+│   ├── ui/                 # Переиспользуемые компоненты (DeleteModal)
+│   └── lib/                # Утилиты (форматирование дат, контексты)
+├── widgets/                # Составные виджеты
+│   ├── Navbar/             # Навигационная панель
+│   └── Sidebar/            # Боковая панель с заметками
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Основные компоненты
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **App.tsx**: Главный компонент, определяющий маршруты (`/login`, `/notes`, `/notes/:id`, `*`).
+- **NotesLayout.tsx**: Макет для страниц заметок, включает Navbar и Sidebar.
+- **Sidebar.tsx**: Боковая панель с поиском, списком заметок и кнопкой создания заметки.
+- **Note.tsx**: Компонент одной заметки с заголовком, датой, группой и кнопкой удаления.
+- **DeleteModal.tsx**: Модальное окно для подтверждения удаления (использует React Portal).
+- **AuthProvider.tsx**: Контекст для управления аутентификацией.
+- **ThemeProvider.tsx**: Контекст для управления темой (светлая/темная).
+- **PrivateRoute.tsx**: Компонент для защиты маршрутов авторизацией.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Функциональность
+
+- **Аутентификация**: Пользователи могут регистрироваться и входить в систему. Данные хранятся в `localStorage`. Защищенные маршруты (`/notes`, `/notes/:id`) доступны только авторизованным пользователям.
+- **Создание заметок**: Кнопка "+" в Sidebar создает новую заметку с уникальным ID (UUID) и категорией "Личное".
+- **Редактирование заметок**: Markdown-редактор на странице `/notes/:id` позволяет редактировать заметки с поддержкой форматирования.
+- **Удаление заметок**: Кнопка удаления в каждой заметке открывает модальное окно для подтверждения. Заметки удаляются из IndexedDB.
+- **Поиск**: Поле поиска в Sidebar фильтрует заметки по заголовку.
+- **Темы**: Поддержка светлой и темной темы с сохранением в `localStorage`.
+
+## Зависимости
+
+### Основные
+
+- `@mantine/core`, `@mantine/form`, `@mantine/hooks`, `@mantine/notifications`: UI-компоненты и утилиты.
+- `@uiw/react-md-editor`: Markdown-редактор.
+- `dexie`: Работа с IndexedDB.
+- `react-router-dom`: Навигация.
+- `dayjs`: Работа с датами.
+- `uuid`: Генерация уникальных ID.
+- `sass`: Поддержка SCSS.
+- `classnames`: Утилита для работы с классами.
+
+### Для разработки
+
+- `vite`: Сборка и разработка.
+- `typescript`: Типизация.
+- `eslint`: Линтинг кода.
+- `@vitejs/plugin-react`, `@vitejs/plugin-react-swc`: Поддержка React в Vite.
+- `vite-plugin-svgr`: Импорт SVG как React-компонентов.
+
+## Известные ограничения
+
+- Аутентификация реализована через `localStorage` и не включает серверную часть.
+- Заметки хранятся локально в IndexedDB, без синхронизации с сервером.
+- Темная/светлая тема требует определения CSS-переменных в `index.scss`.
+
+## Разработка и улучшения
+
+- Добавить серверную часть для аутентификации.
+- Реализовать категоризацию заметок с возможностью создания/удаления категорий.
+- Добавить возможность прикрепления файлов к заметкам.
+- Реализовать адаптивный дизайн для мобильных устройств.
+- Улучшить дизайн.
